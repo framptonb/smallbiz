@@ -1,0 +1,148 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    color: #222;
+    background: #fff;
+    line-height: 1.6;
+}
+
+.site-header {
+    background: #1f3c88;
+    padding: 1rem 2rem;
+}
+
+.site-nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 1.25rem;
+    font-weight: bold;
+}
+
+.site-main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.site-footer {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: #f3f3f3;
+    text-align: center;
+}
+
+h1, h2, h3 {
+    line-height: 1.2;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+ul {
+    padding-left: 1.2rem;
+}
+
+a {
+    color: #1f3c88;
+}
+
+.page-section {
+    margin: 40px 0;
+}
+
+.form-card {
+    max-width: 640px;   /* tighter = cleaner */
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 36px;
+    border-radius: 10px;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.08);
+}
+
+.form-card h1 {
+    margin-bottom: 16px;
+}
+
+.form-intro {
+    margin-bottom: 24px;
+}
+
+.inquiry-form .form-group {
+    margin-bottom: 20px;
+}
+
+.inquiry-form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.inquiry-form input[type="text"],
+.inquiry-form input[type="email"],
+.inquiry-form input[type="tel"],
+.inquiry-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+.inquiry-form input:focus,
+.inquiry-form textarea:focus {
+    outline: none;
+    border-color: #1f3c88;
+    box-shadow: 0 0 0 3px rgba(31, 60, 136, 0.15);
+}
+
+.inquiry-form textarea {
+    min-height: 140px;
+    resize: vertical;
+}
+
+.inquiry-form .form-group {
+    margin-bottom: 22px;
+}
+
+.inquiry-form .g-recaptcha {
+    margin-top: 10px;
+}
+
+.help-text {
+    display: block;
+    margin-top: 6px;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.field-errors {
+    margin-top: 6px;
+    color: #b00020;
+    font-size: 0.95rem;
+}
+
+.form-errors {
+    margin-bottom: 20px;
+    padding: 12px;
+    border: 1px solid #d99;
+    background: #fff3f3;
+    color: #b00020;
+    border-radius: 6px;
+}
+
+.btn-primary {
+    background: #1f3c88;
+    color: #fff;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background: #162f6a;
+}

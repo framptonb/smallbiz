@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+<h1>{{ page.title }}</h1>
+
+<div>
+  {{ page.intro|richtext }}
+</div>
+
+<hr>
+
+<h2>Immigration Services</h2>
+
+<ul>
+  {% for service in page.get_children.live %}
+    <li>
+      <a href="{{ service.url }}">
+        {{ service.title }}
+      </a>
+    </li>
+  {% empty %}
+    <li>No services available yet.</li>
+  {% endfor %}
+</ul>
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+<section>
+    <h1>Welcome to {{ settings.core.BusinessSettings.business_name|default:"Small Business Site" }}</h1>
+    <p>Professional services tailored to your needs.</p>
+</section>
+
+<hr>
+
+<section>
+    <h2>Explore</h2>
+    <ul>
+        <li><a href="/services/">Services</a></li>
+        <li><a href="/blog/">Blog</a></li>
+    </ul>
+</section>
+{% endblock %}
