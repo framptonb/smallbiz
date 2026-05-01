@@ -1,9 +1,11 @@
 # Python
 __pycache__/
 *.pyc
+*.py[cod]
 
 # Virtual environment
 .venv/
+venv/
 
 # Django
 staticfiles/
@@ -11,6 +13,7 @@ media/
 
 # Environment variables
 .env
+.env.*
 
 # OS / editor
 .DS_Store
