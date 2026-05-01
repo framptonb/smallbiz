@@ -1,0 +1,18 @@
+[Unit]
+Description=gunicorn daemon for smallbiz Wagtail site
+After=network.target
+
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/home/ubuntu/sites/smallbiz
+EnvironmentFile=/home/ubuntu/sites/smallbiz/.env
+RuntimeDirectory=gunicorn
+RuntimeDirectoryMode=0755
+ExecStart=/home/ubuntu/sites/smallbiz/.venv/bin/gunicorn \
+          --workers 3 \
+          --bind unix:/run/gunicorn/gunicorn.sock \
+          smallbiz_site.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
