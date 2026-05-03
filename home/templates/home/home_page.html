@@ -7,21 +7,51 @@
 <section class="home-hero">
     <div class="home-hero-overlay">
         <div class="home-hero-content">
+
+            {% if page.hero_eyebrow %}
+            <p class="eyebrow">{{ page.hero_eyebrow }}</p>
+            {% else %}
             <p class="eyebrow">Toronto-based professional services</p>
+            {% endif %}
 
-            <h1>
-                Welcome to {{ settings.core.BusinessSettings.business_name|default:"Small Business Site" }}
-            </h1>
+            {% if page.hero_heading %}
+            <h1>{{ page.hero_heading }}</h1>
+            {% else %}
+            <h1>Welcome to {{ settings.core.BusinessSettings.business_name|default:"Small Business Site" }}</h1>
+            {% endif %}
 
-            <p>
-                Professional, practical support tailored to your business, immigration,
-                and personal service needs.
-            </p>
+            {% if page.hero_text %}
+            <p>{{ page.hero_text }}</p>
+            {% else %}
+            <p>Professional, practical support tailored to your business, immigration, and personal service needs.</p>
+            {% endif %}
 
             <div class="home-hero-actions">
-                <a class="btn-primary" href="/inquiry/">Send an Inquiry</a>
-                <a class="btn-outline" href="/services/">View Services</a>
+                {% if page.primary_button_url %}
+                <a class="btn-primary" href="{{ page.primary_button_url }}">
+                    {% else %}
+                    <a class="btn-primary" href="/inquiry/">
+                        {% endif %}
+                        {% if page.primary_button_text %}
+                        {{ page.primary_button_text }}
+                        {% else %}
+                        Send an Inquiry
+                        {% endif %}
+                    </a>
+
+                    {% if page.secondary_button_url %}
+                    <a class="btn-outline" href="{{ page.secondary_button_url }}">
+                        {% else %}
+                        <a class="btn-outline" href="/services/">
+                            {% endif %}
+                            {% if page.secondary_button_text %}
+                            {{ page.secondary_button_text }}
+                            {% else %}
+                            View Services
+                            {% endif %}
+                        </a>
             </div>
+
         </div>
     </div>
 </section>

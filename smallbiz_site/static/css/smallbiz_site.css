@@ -832,3 +832,18 @@ ul {
         grid-template-columns: 1fr;
     }
 }
+
+.lang-switch {
+    margin-left: 20px;
+    font-weight: 600;
+}
+
+.lang-switch a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 4px;
+}
+
+.lang-switch a:hover {
+    text-decoration: underline;
+}
