@@ -2,21 +2,52 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
 {% block content %}
-<h1>{{ page.title }}</h1>
 
-{% if page.image %}
-  {% image page.image fill-800x400 %}
-{% endif %}
+<div class="content-page service-detail-page">
 
-<p><strong>{{ page.short_summary }}</strong></p>
+  <p class="eyebrow">Service</p>
 
-<div>
-  {{ page.body|richtext }}
+  <div class="service-detail-header">
+    <div>
+      <h1>{{ page.title }}</h1>
+
+      {% if page.short_summary %}
+      <p class="service-summary">{{ page.short_summary }}</p>
+      {% endif %}
+    </div>
+  </div>
+
+  {% if page.image %}
+  <div class="service-feature-image">
+    {% image page.image fill-1200x520 %}
+  </div>
+  {% endif %}
+
+  <div class="service-detail-grid">
+    <article class="service-body">
+      {{ page.body|richtext }}
+    </article>
+
+    <aside class="service-sidebar">
+      <div class="sidebar-card">
+        <h2>Need help?</h2>
+        <p>Send us an inquiry and we’ll respond with the next steps.</p>
+        <a class="btn-primary" href="/inquiry/">Send an Inquiry</a>
+      </div>
+
+      {% if page.price_note %}
+      <div class="price-note-card">
+        <h2>Pricing note</h2>
+        <p>{{ page.price_note }}</p>
+      </div>
+      {% endif %}
+    </aside>
+  </div>
+
+  <p class="back-link">
+    <a href="/services/">← Back to Services</a>
+  </p>
+
 </div>
 
-{% if page.price_note %}
-  <p><em>{{ page.price_note }}</em></p>
-{% endif %}
-
-<p><a href="/services/">← Back to Services</a></p>
 {% endblock %}

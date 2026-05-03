@@ -2,18 +2,39 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
 {% block content %}
-<h1>{{ page.title }}</h1>
 
-{% if page.image %}
-  {% image page.image fill-800x400 %}
-{% endif %}
+<div class="content-page blog-detail-page">
 
-<p><em>{{ page.date }}</em></p>
-<p><strong>{{ page.intro }}</strong></p>
+  <p class="eyebrow">Article</p>
 
-<div>
-  {{ page.body|richtext }}
+  <article class="blog-article">
+    <header class="blog-article-header">
+      <h1>{{ page.title }}</h1>
+
+      {% if page.date %}
+      <p class="blog-date">{{ page.date }}</p>
+      {% endif %}
+
+      {% if page.intro %}
+      <p class="blog-summary">{{ page.intro }}</p>
+      {% endif %}
+    </header>
+
+    {% if page.image %}
+    <div class="blog-feature-image">
+      {% image page.image fill-1200x520 %}
+    </div>
+    {% endif %}
+
+    <div class="blog-body">
+      {{ page.body|richtext }}
+    </div>
+  </article>
+
+  <p class="back-link">
+    <a href="/blog/">← Back to Blog</a>
+  </p>
+
 </div>
 
-<p><a href="/blog/">← Back to Blog</a></p>
 {% endblock %}

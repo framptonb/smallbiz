@@ -1,19 +1,53 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags %}
+{% load static wagtailcore_tags %}
+{% block body_class %}home-page{% endblock %}
 
 {% block content %}
-<section>
-    <h1>Welcome to {{ settings.core.BusinessSettings.business_name|default:"Small Business Site" }}</h1>
-    <p>Professional services tailored to your needs.</p>
+
+<section class="home-hero">
+    <div class="home-hero-overlay">
+        <div class="home-hero-content">
+            <p class="eyebrow">Toronto-based professional services</p>
+
+            <h1>
+                Welcome to {{ settings.core.BusinessSettings.business_name|default:"Small Business Site" }}
+            </h1>
+
+            <p>
+                Professional, practical support tailored to your business, immigration,
+                and personal service needs.
+            </p>
+
+            <div class="home-hero-actions">
+                <a class="btn-primary" href="/inquiry/">Send an Inquiry</a>
+                <a class="btn-outline" href="/services/">View Services</a>
+            </div>
+        </div>
+    </div>
 </section>
 
-<hr>
+<section class="home-section">
+    <div class="container">
+        <p class="eyebrow">Explore</p>
+        <h2>How we can help</h2>
 
-<section>
-    <h2>Explore</h2>
-    <ul>
-        <li><a href="/services/">Services</a></li>
-        <li><a href="/blog/">Blog</a></li>
-    </ul>
+        <div class="home-card-grid">
+            <a class="home-card" href="/services/">
+                <h3>Services</h3>
+                <p>Explore the professional services available for your needs.</p>
+            </a>
+
+            <a class="home-card" href="/blog/">
+                <h3>Blog</h3>
+                <p>Read updates, guidance, and helpful information.</p>
+            </a>
+
+            <a class="home-card" href="/inquiry/">
+                <h3>Inquiry</h3>
+                <p>Contact us directly and we’ll respond as soon as possible.</p>
+            </a>
+        </div>
+    </div>
 </section>
+
 {% endblock %}

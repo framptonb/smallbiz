@@ -1,16 +1,37 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags %}
+{% load static wagtailcore_tags %}
 
 {% block content %}
-<div class="container">
-  <h1>{{ page.title }}</h1>
 
-  {% if page.intro %}
-    <div>{{ page.intro|richtext }}</div>
-  {% endif %}
+<div class="content-page about-page">
 
-  {% if page.body %}
-    <div>{{ page.body|richtext }}</div>
-  {% endif %}
+  <section class="about-hero-grid">
+
+    <div class="about-hero-text">
+      <p class="eyebrow">About</p>
+      <h1>{{ page.title }}</h1>
+
+      {% if page.intro %}
+      <div class="about-intro">
+        {{ page.intro|richtext }}
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="about-hero-image">
+      <img src="{% static 'images/pexels-mart-production-7644017.jpg' %}" alt="About us">
+    </div>
+
+  </section>
+
+  <section class="about-content">
+    {% if page.body %}
+    <div class="about-body">
+      {{ page.body|richtext }}
+    </div>
+    {% endif %}
+  </section>
+
 </div>
+
 {% endblock %}

@@ -2,23 +2,42 @@
 {% load wagtailcore_tags %}
 
 {% block content %}
-<h1>{{ page.title }}</h1>
 
-<div>
-  {{ page.intro|richtext }}
+<div class="content-page blog-index-page">
+
+  <section class="blog-hero">
+    <p class="eyebrow">Blog</p>
+    <h1>{{ page.title }}</h1>
+
+    {% if page.intro %}
+    <div class="blog-intro">
+      {{ page.intro|richtext }}
+    </div>
+    {% endif %}
+  </section>
+
+  <section class="blog-list-section">
+    <div class="section-heading">
+      <h2>Latest Posts</h2>
+      <p>Read helpful updates, guidance, and information.</p>
+    </div>
+
+    <div class="blog-grid">
+      {% for post in page.get_children.live %}
+      <a class="blog-card" href="{{ post.url }}">
+        <span class="blog-card-label">Article</span>
+        <h3>{{ post.title }}</h3>
+        <p>Read more about this topic and how it may apply to your situation.</p>
+        <span class="card-link">Read post →</span>
+      </a>
+      {% empty %}
+      <div class="empty-card">
+        <p>No blog posts yet.</p>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
 </div>
 
-<hr>
-
-<h2>Latest Posts</h2>
-
-<ul>
-  {% for post in page.get_children.live %}
-    <li>
-      <a href="{{ post.url }}">{{ post.title }}</a>
-    </li>
-  {% empty %}
-    <li>No blog posts yet.</li>
-  {% endfor %}
-</ul>
 {% endblock %}

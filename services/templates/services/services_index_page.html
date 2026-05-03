@@ -2,26 +2,42 @@
 {% load wagtailcore_tags %}
 
 {% block content %}
-<h1>{{ page.title }}</h1>
 
-<div>
-  {{ page.intro|richtext }}
-</div>
+<div class="content-page services-page">
 
-<hr>
+  <section class="services-hero">
+    <p class="eyebrow">Services</p>
+    <h1>{{ page.title }}</h1>
 
-<h2>Immigration Services</h2>
+    {% if page.intro %}
+    <div class="services-intro">
+      {{ page.intro|richtext }}
+    </div>
+    {% endif %}
+  </section>
 
-<ul>
-  {% for service in page.get_children.live %}
-    <li>
-      <a href="{{ service.url }}">
-        {{ service.title }}
+  <section class="services-list-section">
+    <div class="section-heading">
+      <h2>Immigration Services</h2>
+      <p>Explore our available service areas and choose the option that best fits your needs.</p>
+    </div>
+
+    <div class="services-grid">
+      {% for service in page.get_children.live %}
+      <a class="service-card" href="{{ service.url }}">
+        <span class="service-card-number">0{{ forloop.counter }}</span>
+        <h3>{{ service.title }}</h3>
+        <p>Learn more about this service and how we can help.</p>
+        <span class="card-link">View service →</span>
       </a>
-    </li>
-  {% empty %}
-    <li>No services available yet.</li>
-  {% endfor %}
-</ul>
+      {% empty %}
+      <div class="empty-card">
+        <p>No services available yet.</p>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+</div>
 
 {% endblock %}
