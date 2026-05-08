@@ -6,7 +6,7 @@
 <div class="content-page services-page">
 
   <section class="services-hero">
-    <p class="eyebrow">Services</p>
+    <p class="eyebrow">{{ page.hero_eyebrow }}</p>
     <h1>{{ page.title }}</h1>
 
     {% if page.intro %}
@@ -18,21 +18,21 @@
 
   <section class="services-list-section">
     <div class="section-heading">
-      <h2>Immigration Services</h2>
-      <p>Explore our available service areas and choose the option that best fits your needs.</p>
+      <h2>{{ page.services_heading }}</h2>
+      <p>{{ page.services_intro }}</p>
     </div>
 
     <div class="services-grid">
-      {% for service in page.get_children.live %}
-      <a class="service-card" href="{{ service.url }}">
+      {% for service in page.get_children.live.specific %}
+      <a class="service-card" href="{% pageurl service %}">
         <span class="service-card-number">0{{ forloop.counter }}</span>
         <h3>{{ service.title }}</h3>
-        <p>Learn more about this service and how we can help.</p>
-        <span class="card-link">View service →</span>
+        <p>{{ page.service_card_text }}</p>
+        <span class="card-link">{{ page.view_service_text }}</span>
       </a>
       {% empty %}
       <div class="empty-card">
-        <p>No services available yet.</p>
+        <p>{{ page.empty_services_text }}</p>
       </div>
       {% endfor %}
     </div>

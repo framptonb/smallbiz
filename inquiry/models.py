@@ -14,6 +14,22 @@ class InquiryPage(Page):
 
     intro = RichTextField(blank=True)
     thank_you_text = RichTextField(blank=True)
+    hero_eyebrow = models.CharField(max_length=100, blank=True, default="Contact us")
+    submit_button_text = models.CharField(max_length=100, blank=True, default="Send Inquiry")
+
+    name_label = models.CharField(max_length=100, blank=True, default="Full name")
+    name_placeholder = models.CharField(max_length=100, blank=True, default="Your full name")
+
+    email_label = models.CharField(max_length=100, blank=True, default="Email address")
+    email_placeholder = models.CharField(max_length=100, blank=True, default="you@example.com")
+
+    phone_label = models.CharField(max_length=100, blank=True, default="Phone number")
+    phone_placeholder = models.CharField(max_length=100, blank=True, default="555-555-5555")
+
+    message_label = models.CharField(max_length=100, blank=True, default="How can we help?")
+    message_placeholder = models.CharField(max_length=255, blank=True, default="Tell us how we can help.")
+
+    captcha_label = models.CharField(max_length=100, blank=True, default="Captcha")
 
     email_to = models.EmailField(
         blank=True,
@@ -39,6 +55,17 @@ class InquiryPage(Page):
         FieldPanel("email_to"),
         FieldPanel("email_from"),
         FieldPanel("email_subject"),
+        FieldPanel("hero_eyebrow"),
+        FieldPanel("submit_button_text"),
+        FieldPanel("name_label"),
+        FieldPanel("name_placeholder"),
+        FieldPanel("email_label"),
+        FieldPanel("email_placeholder"),
+        FieldPanel("phone_label"),
+        FieldPanel("phone_placeholder"),
+        FieldPanel("message_label"),
+        FieldPanel("message_placeholder"),
+        FieldPanel("captcha_label"),
     ]
 
     def get_form_class(self):
@@ -48,7 +75,7 @@ class InquiryPage(Page):
         form_class = self.get_form_class()
 
         if request.method == "POST":
-            form = form_class(request.POST)
+            form = form_class(request.POST, page=self)
             if form.is_valid():
                 self.process_form_submission(form)
                 return render(
@@ -59,7 +86,7 @@ class InquiryPage(Page):
                     },
                 )
         else:
-            form = form_class()
+            form = form_class(page=self)
 
         return render(
             request,
@@ -72,8 +99,7 @@ class InquiryPage(Page):
 
     def process_form_submission(self, form):
         cleaned = form.cleaned_data.copy()
-        cleaned.pop("captcha", None)
-
+       
         if self.email_to:
             message = (
                 f"New inquiry received\n\n"

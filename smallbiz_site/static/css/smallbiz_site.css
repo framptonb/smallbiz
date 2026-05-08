@@ -650,17 +650,22 @@ ul {
 
 .blog-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 22px;
 }
 
 .blog-card {
     display: block;
+    width: 100%;
+    box-sizing: border-box;
+    text-decoration: none;
+
     background: white;
     border: 1px solid var(--border);
     border-radius: 24px;
     padding: 28px;
     min-height: 220px;
+
     box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -761,6 +766,15 @@ ul {
 
 .blog-body p {
     margin-bottom: 18px;
+}
+
+.blog-card h3,
+.blog-card p,
+.blog-card-label,
+.card-link {
+    white-space: normal;
+    word-break: normal;
+    overflow-wrap: anywhere;
 }
 
 /* About page */

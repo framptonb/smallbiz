@@ -5,7 +5,7 @@
 
 <div class="content-page blog-detail-page">
 
-  <p class="eyebrow">Article</p>
+  <p class="eyebrow">{{ page.article_label }}</p>
 
   <article class="blog-article">
     <header class="blog-article-header">
@@ -32,7 +32,7 @@
   </article>
 
   <p class="back-link">
-    <a href="/blog/">← Back to Blog</a>
+    <a href="{{ page.get_parent.url }}">{{ page.back_to_blog_text }}</a>
   </p>
 
 </div>

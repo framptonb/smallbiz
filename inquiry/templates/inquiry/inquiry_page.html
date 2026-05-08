@@ -6,7 +6,7 @@
   <div class="container inquiry-layout">
 
     <div class="inquiry-intro">
-      <p class="eyebrow">Contact us</p>
+      <p class="eyebrow">{{ page.hero_eyebrow }}</p>
       <h1>{{ page.title }}</h1>
 
       {% if page.intro %}
@@ -43,7 +43,7 @@
         </div>
         {% endfor %}
 
-        <button type="submit" class="btn-primary">Send Inquiry</button>
+        <button type="submit" class="btn-primary">{{ page.submit_button_text }}</button>
       </form>
     </div>
 

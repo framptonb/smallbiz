@@ -53,7 +53,8 @@ INSTALLED_APPS = [
     "django_recaptcha",
     "wagtailcaptcha",
     "inquiry",
-    "wagtail.locales",
+    "wagtail_localize",
+    "wagtail_localize.locales",
 ]
 
 MIDDLEWARE = [
@@ -111,6 +112,16 @@ LANGUAGES = [
 ]
 WAGTAIL_I18N_ENABLED = True
 WAGTAIL_CONTENT_LANGUAGES = LANGUAGES
+
+WAGTAILLOCALIZE_SYNC_LIVE_STATUS_ON_TRANSLATE = True
+WAGTAILLOCALIZE_AUTO_CREATE_TRANSLATIONS = True
+
+WAGTAILLOCALIZE_MACHINE_TRANSLATOR = {
+    "CLASS": "wagtail_localize.machine_translators.deepl.DeepLTranslator",
+    "OPTIONS": {
+        "AUTH_KEY": "your-deepl-api-key",
+    },
+}
 
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"

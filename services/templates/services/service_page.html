@@ -5,7 +5,7 @@
 
 <div class="content-page service-detail-page">
 
-  <p class="eyebrow">Service</p>
+  <p class="eyebrow">{{ page.hero_eyebrow }}</p>
 
   <div class="service-detail-header">
     <div>
@@ -30,14 +30,17 @@
 
     <aside class="service-sidebar">
       <div class="sidebar-card">
-        <h2>Need help?</h2>
-        <p>Send us an inquiry and we’ll respond with the next steps.</p>
-        <a class="btn-primary" href="/inquiry/">Send an Inquiry</a>
+        <h2>{{ page.sidebar_heading }}</h2>
+        <p>{{ page.sidebar_text }}</p>
+        <a class="btn-primary"
+          href="{% if request.path|slice:':9' == '/zh-hans/' %}/zh-hans/inquiry/{% else %}/inquiry/{% endif %}">
+          {{ page.sidebar_button_text }}
+        </a>
       </div>
 
       {% if page.price_note %}
       <div class="price-note-card">
-        <h2>Pricing note</h2>
+        <h2>{{ page.pricing_note_heading }}</h2>
         <p>{{ page.price_note }}</p>
       </div>
       {% endif %}
@@ -45,7 +48,9 @@
   </div>
 
   <p class="back-link">
-    <a href="/services/">← Back to Services</a>
+    <a href="{% if request.path|slice:':9' == '/zh-hans/' %}/zh-hans/services/{% else %}/services/{% endif %}">
+      {{ page.back_to_services_text }}
+    </a>
   </p>
 
 </div>

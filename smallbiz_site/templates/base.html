@@ -38,23 +38,21 @@
     <header class="site-header">
         <nav class="site-nav">
 
-            {% if request.path|slice:":4" == "/zh/" %}
+            {% if request.path|slice:":9" == "/zh-hans/" %}
 
-            <!-- Chinese Nav -->
-            <a href="/zh/">首页</a>
-            <a href="/zh/services/">服务</a>
-            <a href="/zh/blog/">博客</a>
-            <a href="/zh/inquiry/">咨询</a>
-            <a href="/zh/about/">关于</a>
+            <a href="/zh-hans/">首页</a>
+            <a href="/zh-hans/services/">服务</a>
+            <a href="/zh-hans/blog/">博客</a>
+            <a href="/zh-hans/inquiry/">咨询</a>
+            <a href="/zh-hans/about/">关于</a>
 
             <span class="lang-switch">
                 <a href="/">EN</a> |
-                <a href="/zh/">中文</a>
+                <a href="/zh-hans/">中文</a>
             </span>
 
             {% else %}
 
-            <!-- English Nav -->
             <a href="/">Home</a>
             <a href="/services/">Services</a>
             <a href="/blog/">Blog</a>
@@ -63,7 +61,7 @@
 
             <span class="lang-switch">
                 <a href="/">EN</a> |
-                <a href="/zh/">中文</a>
+                <a href="/zh-hans/">中文</a>
             </span>
 
             {% endif %}
