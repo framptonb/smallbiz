@@ -100,6 +100,10 @@ ul {
     text-align: center;
 }
 
+.home-page .site-footer {
+    margin-top: 0;
+}
+
 .section {
     padding: 56px 0;
 }
@@ -194,6 +198,19 @@ ul {
     margin-top: 10px;
 }
 
+.inquiry-hero-image {
+    margin-top: 2rem;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 18px 50px rgba(15, 23, 42, 0.12);
+}
+
+.inquiry-hero-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
 .help-text {
     display: block;
     margin-top: 6px;
@@ -257,47 +274,184 @@ ul {
     }
 }
 
-/* Home Page CSS */
+@media (max-width: 900px) {
+    .site-nav {
+        gap: 14px;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 14px 16px;
+    }
 
-.home-hero {
-    height: 100vh;
-    min-height: 700px;
+    .site-nav a {
+        margin: 0 6px;
+        line-height: 1.6;
+    }
 
-    background-image:
-        linear-gradient(to bottom, rgba(7, 27, 49, 0.75), rgba(7, 27, 49, 0.2) 40%, rgba(7, 27, 49, 0.6)),
-        url("/static/images/pexels-mateusz-17796166.jpg");
-
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-
-    display: flex;
-    align-items: center;
+    .lang-switch {
+        margin-left: 8px;
+    }
 }
 
+/* Home Page CSS */
+
+.home-hero,
 .home-hero-overlay {
-    width: 100%;
-    padding: 96px 0;
+    min-height: 100vh;
+}
+
+.home-hero-bg {
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.home-rss-card {
+    position: absolute;
+    padding-left: 18px;
+    /* space for bullet */
+    top: 80px;
+    right: 40px;
+    width: 520px;
+    padding: 22px;
+    border-radius: 20px;
+    background: rgba(7, 27, 49, 0.78);
+    color: white;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.25);
+    z-index: 50;
+}
+
+.home-rss-card .rss-source {
+    font-size: 0.65rem;
+    opacity: 0.7;
+    margin-top: 6px;
+    margin-bottom: 10px;
+}
+
+.rss-scroll-window {
+    max-height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.rss-scroll-track {
+    display: flex;
+    flex-direction: column;
+    animation: rss-scroll 25s linear infinite;
+}
+
+.rss-scroll-track:hover {
+    animation-play-state: paused;
+}
+
+.home-rss-card .rss-scroll-track a {
+    display: block;
+    position: relative;
+    padding-left: 20px;
+    color: rgb(226, 138, 22);
+    text-decoration: none;
+    font-weight: 400;
+    margin-top: 14px;
+    line-height: 1.35;
+}
+
+.home-rss-card .rss-scroll-track a::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: rgb(226, 138, 22);
+    font-size: 18px;
+    line-height: 1.35;
+}
+
+.home-rss-card .rss-scroll-track a:hover {
+    text-decoration: underline;
+}
+
+.home-rss-card .rss-source {
+    font-size: 0.65rem;
+    opacity: 0.7;
+    margin-top: 6px;
+    margin-bottom: 10px;
+}
+
+@keyframes rss-scroll {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-50%);
+    }
+}
+
+.home-hero-bg {
+    position: relative;
+}
+
+@media (max-width: 900px) {
+    .home-rss-card {
+        position: static;
+        width: auto;
+        margin-top: 30px;
+    }
+}
+
+.home-rss-card {
+    z-index: 50;
 }
 
 .home-hero-content {
     width: min(1120px, calc(100% - 32px));
     margin: 0 auto;
-    max-width: 760px;
+    max-width: 1120px;
     color: white;
     padding-top: 80px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
 }
 
-.home-hero-content h1 {
+.home-hero-text h1 {
     margin: 0 0 22px;
     font-size: clamp(42px, 6vw, 76px);
     line-height: 1.02;
 }
 
-.home-hero-content p {
+.home-hero-text p {
     max-width: 640px;
     font-size: 21px;
     color: rgba(255, 255, 255, 0.88);
+}
+
+/* =========================================
+   HOMEPAGE HERO LOGO
+========================================= */
+
+.home-hero-logo {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+    padding-top: 11px;
+}
+
+.home-hero-logo img {
+    width: 120px;
+    max-width: 120px;
+    height: auto;
+    display: block;
+
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
+}
+
+.home-hero-text {
+    max-width: 760px;
 }
 
 .home-hero-actions {
@@ -375,6 +529,19 @@ ul {
 
     .home-card-grid {
         grid-template-columns: 1fr;
+    }
+
+    .home-hero-content {
+        display: block;
+    }
+
+    .home-hero-logo {
+        margin-bottom: 24px;
+    }
+
+    .home-hero-logo img {
+        width: 95px;
+        max-width: 95px;
     }
 }
 
@@ -860,4 +1027,442 @@ ul {
 
 .lang-switch a:hover {
     text-decoration: underline;
+}
+
+.footer-socials {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.footer-socials a,
+.footer-socials span {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.footer-socials img {
+    width: 24px;
+    height: 24px;
+    display: block;
+    filter: brightness(0) invert(1);
+}
+
+.footer-socials a,
+.footer-socials span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* =========================================
+   ABOUT PAGE CERTIFICATES SECTION
+========================================= */
+
+.about-certificates-section {
+    background: #777;
+    padding: 65px 40px;
+    margin-top: 70px;
+
+    width: 100vw;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+.about-certificates-container {
+    max-width: 1600px;
+    margin: 0 auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+
+    flex-wrap: nowrap;
+}
+
+.certificate-item {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.certificate-item img {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+
+    border-radius: 10px;
+    background: white;
+    padding: 6px;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================================
+   CERTIFICATES RESPONSIVE
+========================================= */
+
+@media (max-width: 1100px) {
+
+    .about-certificates-container {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .certificate-item {
+        flex: 0 0 calc(33.333% - 20px);
+    }
+}
+
+@media (max-width: 768px) {
+
+    .about-certificates-section {
+        padding: 40px 20px;
+    }
+
+    .certificate-item {
+        flex: 0 0 calc(50% - 16px);
+    }
+
+    .certificate-item img {
+        max-width: 180px;
+    }
+}
+
+@media (max-width: 520px) {
+
+    .about-certificates-container {
+        flex-direction: column;
+    }
+
+    .certificate-item {
+        flex: none;
+        width: 100%;
+    }
+
+    .certificate-item img {
+        max-width: 240px;
+    }
+}
+
+/* =========================================
+   STUDY / WORK ABROAD PAGE
+========================================= */
+
+.studywork-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 70px 24px;
+}
+
+.studywork-header {
+    max-width: 850px;
+    margin: 0 auto 50px;
+    text-align: center;
+}
+
+.studywork-header h1 {
+    margin: 0 0 22px;
+
+    font-size: clamp(2.8rem, 5vw, 5rem);
+    line-height: 0.98;
+
+    color: #0d2a4a;
+    font-weight: 800;
+}
+
+.studywork-intro {
+    font-size: 1.08rem;
+    line-height: 1.8;
+    color: #3f4a55;
+}
+
+.studywork-card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 34px;
+}
+
+.studywork-card {
+    display: grid;
+    grid-template-columns: minmax(280px, 42%) 1fr;
+    gap: 34px;
+    align-items: start;
+
+    background: #fff;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+
+    min-height: 340px;
+}
+
+.studywork-card-image {
+    padding: 28px 0 28px 28px;
+    align-self: start;
+}
+
+.studywork-card-image img {
+    width: 100%;
+    height: auto;
+
+    display: block;
+
+    border-radius: 18px;
+    /** object-fit: cover; **/
+}
+
+.studywork-card-content {
+    padding: 34px 34px 34px 0;
+    position: relative;
+}
+
+.studywork-card-content h2 {
+    margin: 0 0 16px;
+    font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+    color: #0d2a4a;
+}
+
+.studywork-card-body {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: #3d4852;
+}
+
+.studywork-card-button {
+    display: inline-block;
+    margin-top: 24px;
+    padding: 14px 28px;
+
+    border-radius: 999px;
+    background: #d3a243;
+    color: #111;
+
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+
+    transition: all 0.2s ease;
+}
+
+.studywork-card-button:hover {
+    background: #bb8d33;
+    transform: translateY(-1px);
+}
+
+.section-eyebrow {
+    color: #d3a243;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.studywork-card-body-preview {
+    max-height: 165px;
+    overflow: hidden;
+    position: relative;
+}
+
+.studywork-card-body-preview::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 55px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #fff);
+    pointer-events: none;
+}
+
+.studywork-read-more-button {
+    display: inline-block;
+    margin-top: 22px;
+    padding: 12px 24px;
+
+    border: 0;
+    border-radius: 999px;
+    background: #d3a243;
+    color: #111;
+
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.studywork-read-more-button:hover {
+    background: #bb8d33;
+    transform: translateY(-1px);
+}
+
+@media (max-width: 800px) {
+    .studywork-page {
+        padding: 50px 18px;
+    }
+
+    .studywork-card {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .studywork-card-image {
+        padding: 24px 24px 0;
+    }
+
+    .studywork-card-content {
+        padding: 28px;
+    }
+
+    .studywork-card-body-preview {
+        max-height: 190px;
+    }
+
+    .studywork-program-modal {
+        width: calc(100vw - 24px);
+        max-height: calc(100vh - 24px);
+    }
+
+    .studywork-modal-image {
+        width: 100%;
+        max-width: 420px;
+        min-width: 0;
+    }
+
+    .studywork-modal-content {
+        padding: 24px;
+    }
+}
+
+/* =========================================
+   STUDY / WORK PROGRAM MODAL
+========================================= */
+
+.studywork-program-modal {
+    display: none;
+
+    position: fixed;
+    z-index: 9999;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: min(1000px, calc(100vw - 40px));
+    max-height: calc(100vh - 40px);
+
+    border: 0;
+    border-radius: 24px;
+    padding: 0;
+
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+
+    background: #fff;
+}
+
+.studywork-program-modal.is-open {
+    display: block;
+}
+
+.studywork-program-modal.is-open::before {
+    content: "";
+    position: fixed;
+    z-index: -1;
+
+    top: -100vh;
+    right: -100vw;
+    bottom: -100vh;
+    left: -100vw;
+
+    background: rgba(8, 24, 39, 0.72);
+}
+
+.studywork-modal-inner {
+    position: relative;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    background: #fff;
+}
+
+.studywork-modal-close {
+    position: sticky;
+    top: 16px;
+    float: right;
+    z-index: 10;
+
+    margin: 16px 16px 0 0;
+
+    width: 42px;
+    height: 42px;
+
+    border: 0;
+    border-radius: 999px;
+    background: #0d2a4a;
+    color: #fff;
+
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+.studywork-modal-close:hover {
+    background: #173b57;
+}
+
+.studywork-modal-image {
+    padding: 34px 34px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.studywork-modal-image img {
+    width: 50%;
+    max-width: 520px;
+    min-width: 280px;
+    height: auto;
+    display: block;
+    border-radius: 18px;
+}
+
+.studywork-modal-content {
+    padding: 34px;
+}
+
+.studywork-modal-content h2 {
+    margin: 0 0 20px;
+    color: #0d2a4a;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1.05;
+}
+
+.studywork-modal-body {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #3d4852;
+}
+
+.studywork-modal-body p {
+    margin-bottom: 1.1em;
+}
+
+.studywork-modal-body ul,
+.studywork-modal-body ol {
+    padding-left: 1.4rem;
+    margin-bottom: 1.2em;
+}
+
+.studywork-modal-body li {
+    margin-bottom: 0.5em;
 }

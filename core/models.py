@@ -12,6 +12,11 @@ class BusinessSettings(BaseSiteSetting):
     hours = models.TextField(blank=True)
     facebook_url = models.URLField(blank=True)
     instagram_url = models.URLField(blank=True)
+    wechat_id = models.CharField(
+        max_length=100,
+        blank=True,
+        help_text="WeChat ID or contact handle"
+    )
 
     panels = [
         FieldPanel("business_name"),
@@ -21,6 +26,7 @@ class BusinessSettings(BaseSiteSetting):
         FieldPanel("hours"),
         FieldPanel("facebook_url"),
         FieldPanel("instagram_url"),
+        FieldPanel("wechat_id"),
     ]
 
 # Create your models here.

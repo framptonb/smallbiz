@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags studywork_tags %}
+
+{% block content %}
+
+<section class="studywork-page">
+    <div class="studywork-header">
+        {% if request.path|slice:":9" == "/zh-hans/" %}
+        <p class="section-eyebrow">项目</p>
+        {% else %}
+        <p class="section-eyebrow">Programs</p>
+        {% endif %}
+        <h1>{{ page.title }}</h1>
+
+        {% if page.intro %}
+        <div class="studywork-intro">
+            {{ page.intro|richtext }}
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="studywork-card-list">
+        {% for card in page.program_cards.all %}
+        <article class="studywork-card">
+            {% if card.image %}
+            <div class="studywork-card-image">
+                {% image card.image fill-520x340 %}
+            </div>
+            {% endif %}
+
+            <div class="studywork-card-content">
+                <h2>{{ card.title }}</h2>
+
+                <div class="studywork-card-body studywork-card-body-preview">
+                    {{ card.body_text|program_body }}
+                </div>
+
+                <button class="studywork-read-more-button" type="button"
+                    data-modal-target="program-modal-{{ forloop.counter }}">
+                    {% if request.path|slice:":9" == "/zh-hans/" %}
+                    阅读更多
+                    {% else %}
+                    Read more
+                    {% endif %}
+                </button>
+            </div>
+        </article>
+
+        <dialog class="studywork-program-modal" id="program-modal-{{ forloop.counter }}">
+            <div class="studywork-modal-inner">
+                <button class="studywork-modal-close" type="button" aria-label="Close">
+                    ×
+                </button>
+
+                {% if card.image %}
+                <div class="studywork-modal-image">
+                    {% image card.image width-520 %}
+                </div>
+                {% endif %}
+
+                <div class="studywork-modal-content">
+                    <h2>{{ card.title }}</h2>
+
+                    <div class="studywork-modal-body">
+                        {{ card.body_text|program_body }}
+                    </div>
+
+                    {% if card.button_text %}
+                    <a class="studywork-card-button" href="/inquiry/">
+                        {{ card.button_text }}
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </dialog>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock %}

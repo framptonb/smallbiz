@@ -42,6 +42,7 @@
 
             <a href="/zh-hans/">首页</a>
             <a href="/zh-hans/services/">服务</a>
+            <a href="/zh-hans/studying-or-working-abroad/">留学或海外工作</a>
             <a href="/zh-hans/blog/">博客</a>
             <a href="/zh-hans/inquiry/">咨询</a>
             <a href="/zh-hans/about/">关于</a>
@@ -55,6 +56,7 @@
 
             <a href="/">Home</a>
             <a href="/services/">Services</a>
+            <a href="/studying-or-working-abroad/">Studying or Working Abroad</a>
             <a href="/blog/">Blog</a>
             <a href="/inquiry/">Inquiry</a>
             <a href="/about/">About</a>
@@ -75,12 +77,48 @@
 
     <footer class="site-footer">
         <p>&copy; {{ settings.core.BusinessSettings.business_name|default:"Small Business Site" }}</p>
+        {% if settings.core.BusinessSettings.address %}
+        <p class="footer-address">
+            {{ settings.core.BusinessSettings.address|linebreaksbr }}
+        </p>
+        {% endif %}
         {% if settings.core.BusinessSettings.phone %}
         <p>{{ settings.core.BusinessSettings.phone }}</p>
         {% endif %}
         {% if settings.core.BusinessSettings.email %}
         <p>{{ settings.core.BusinessSettings.email }}</p>
         {% endif %}
+
+        {% load static %}
+
+        <div class="footer-socials">
+
+            {% if settings.core.BusinessSettings.facebook_url %}
+            <a href="{{ settings.core.BusinessSettings.facebook_url }}" target="_blank" rel="noopener"
+                aria-label="Facebook">
+                <img src="{% static 'icons/facebook.svg' %}" alt="Facebook">
+            </a>
+            {% endif %}
+
+            {% if settings.core.BusinessSettings.instagram_url %}
+            <a href="{{ settings.core.BusinessSettings.instagram_url }}" target="_blank" rel="noopener"
+                aria-label="Instagram">
+                <img src="{% static 'icons/instagram.svg' %}" alt="Instagram">
+            </a>
+            {% endif %}
+
+            {% if settings.core.BusinessSettings.wechat_id %}
+            <span class="wechat-item">
+                <img src="{% static 'icons/wechat.svg' %}" alt="WeChat">
+                {% if request.path|slice:":9" == "/zh-hans/" %}
+                {{ settings.core.BusinessSettings.wechat_id }}
+                {% else %}
+                {{ settings.core.BusinessSettings.wechat_id }}
+                {% endif %}
+            </span>
+            {% endif %}
+
+        </div>
     </footer>
 
     <script type="text/javascript" src="{% static 'js/smallbiz_site.js' %}"></script>

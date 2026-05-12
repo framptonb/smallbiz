@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags static %}
+{% load wagtailcore_tags wagtailimages_tags %}
 
 {% block content %}
 
@@ -19,7 +19,9 @@
     </div>
 
     <div class="about-hero-image">
-      <img src="{% static 'images/pexels-kindelmedia-7651717.jpg' %}" alt="About us">
+      {% if page.hero_image %}
+      {% image page.hero_image fill-800x600 alt=page.hero_image_alt %}
+      {% endif %}
     </div>
 
   </section>
@@ -30,6 +32,42 @@
       {{ page.body|richtext }}
     </div>
     {% endif %}
+  </section>
+
+  <section class="about-certificates-section">
+    <div class="about-certificates-container">
+
+      {% if page.certificate_1 %}
+      <div class="certificate-item">
+        {% image page.certificate_1 width-220 %}
+      </div>
+      {% endif %}
+
+      {% if page.certificate_2 %}
+      <div class="certificate-item">
+        {% image page.certificate_2 width-220 %}
+      </div>
+      {% endif %}
+
+      {% if page.certificate_3 %}
+      <div class="certificate-item">
+        {% image page.certificate_3 width-220 %}
+      </div>
+      {% endif %}
+
+      {% if page.certificate_4 %}
+      <div class="certificate-item">
+        {% image page.certificate_4 width-220 %}
+      </div>
+      {% endif %}
+
+      {% if page.certificate_5 %}
+      <div class="certificate-item">
+        {% image page.certificate_5 width-220 %}
+      </div>
+      {% endif %}
+
+    </div>
   </section>
 
 </div>

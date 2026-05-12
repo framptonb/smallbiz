@@ -8,6 +8,7 @@ from wagtail.models import Page
 from .forms import InquiryForm
 from django.shortcuts import render
 from django.conf import settings
+from wagtail.images import get_image_model_string
 
 class InquiryPage(Page):
     template = "inquiry/inquiry_page.html"
@@ -31,6 +32,20 @@ class InquiryPage(Page):
 
     captcha_label = models.CharField(max_length=100, blank=True, default="Captcha")
 
+    hero_image = models.ForeignKey(
+        get_image_model_string(),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+    hero_image_alt = models.CharField(
+        max_length=255,
+        blank=True,
+        help_text="Describe the image for accessibility and SEO.",
+    )
+    
+
     email_to = models.EmailField(
         blank=True,
         help_text="Where inquiry notifications should be sent.",
@@ -49,8 +64,9 @@ class InquiryPage(Page):
     subpage_types = []
     max_count = 1
 
-    content_panels = Page.content_panels + [
+    content_panels = Page.content_panels + [        
         FieldPanel("intro"),
+        FieldPanel("hero_image"),
         FieldPanel("thank_you_text"),
         FieldPanel("email_to"),
         FieldPanel("email_from"),
@@ -66,6 +82,7 @@ class InquiryPage(Page):
         FieldPanel("message_label"),
         FieldPanel("message_placeholder"),
         FieldPanel("captcha_label"),
+        FieldPanel("hero_image_alt"),
     ]
 
     def get_form_class(self):

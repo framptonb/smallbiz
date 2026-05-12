@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
 
 {% block content %}
 <section class="section">
@@ -12,6 +12,12 @@
       {% if page.intro %}
       <div class="form-intro">
         {{ page.intro|richtext }}
+      </div>
+      {% endif %}
+
+      {% if page.hero_image %}
+      <div class="inquiry-hero-image">
+        {% image page.hero_image fill-700x500 alt=page.hero_image_alt %}
       </div>
       {% endif %}
     </div>

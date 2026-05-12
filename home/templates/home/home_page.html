@@ -1,83 +1,100 @@
 {% extends "base.html" %}
-{% load static wagtailcore_tags %}
+{% load static wagtailcore_tags wagtailimages_tags %}
 {% block body_class %}home-page{% endblock %}
 
 {% block content %}
 
 <section class="home-hero">
-    <div class="home-hero-overlay">
-        <div class="home-hero-content">
-
-            {% if page.hero_eyebrow %}
-            <p class="eyebrow">{{ page.hero_eyebrow }}</p>
-            {% else %}
-            <p class="eyebrow">Toronto-based professional services</p>
+    {% if page.hero_image %}
+    {% image page.hero_image fill-1600x800 as hero_img %}
+    <div class="home-hero-bg" style="background-image: url('{{ hero_img.url }}');">
+        {% else %}
+        <div class="home-hero-bg">
             {% endif %}
 
-            {% if page.hero_heading %}
-            <h1>{{ page.hero_heading }}</h1>
-            {% else %}
-            <h1>Welcome to {{ settings.core.BusinessSettings.business_name|default:"Small Business Site" }}</h1>
-            {% endif %}
+            <div class="home-hero-overlay">
+                <div class="home-hero-content">
+                    {% if page.hero_logo %}
+                    <div class="home-hero-logo">
+                        {% image page.hero_logo max-180x180 %}
+                    </div>
+                    {% endif %}
 
-            {% if page.hero_text %}
-            <p>{{ page.hero_text }}</p>
-            {% else %}
-            <p>Professional, practical support tailored to your business, immigration, and personal service needs.</p>
-            {% endif %}
-
-            <div class="home-hero-actions">
-                {% if page.primary_button_url %}
-                <a class="btn-primary" href="{{ page.primary_button_url }}">
-                    {% else %}
-                    <a class="btn-primary" href="/inquiry/">
-                        {% endif %}
-                        {% if page.primary_button_text %}
-                        {{ page.primary_button_text }}
+                    <div class="home-hero-text">
+                        {% if page.hero_eyebrow %}
+                        <p class="eyebrow">{{ page.hero_eyebrow }}</p>
                         {% else %}
-                        Send an Inquiry
+                        <p class="eyebrow">Toronto-based professional services</p>
                         {% endif %}
-                    </a>
 
-                    {% if page.secondary_button_url %}
-                    <a class="btn-outline" href="{{ page.secondary_button_url }}">
+                        {% if page.hero_heading %}
+                        <h1>{{ page.hero_heading }}</h1>
                         {% else %}
-                        <a class="btn-outline" href="/services/">
-                            {% endif %}
-                            {% if page.secondary_button_text %}
-                            {{ page.secondary_button_text }}
-                            {% else %}
-                            View Services
-                            {% endif %}
-                        </a>
+                        <h1>Welcome to {{ settings.core.BusinessSettings.business_name|default:"Small Business Site" }}
+                        </h1>
+                        {% endif %}
+
+                        {% if page.hero_text %}
+                        <p>{{ page.hero_text }}</p>
+                        {% else %}
+                        <p>Professional, practical support tailored to your business, immigration, and personal service
+                            needs.</p>
+                        {% endif %}
+
+                        <div class="home-hero-actions">
+                            {% if page.primary_button_url %}
+                            <a class="btn-primary" href="{{ page.primary_button_url }}">
+                                {% else %}
+                                <a class="btn-primary" href="/inquiry/">
+                                    {% endif %}
+                                    {% if page.primary_button_text %}
+                                    {{ page.primary_button_text }}
+                                    {% else %}
+                                    Send an Inquiry
+                                    {% endif %}
+                                </a>
+
+                                {% if page.secondary_button_url %}
+                                <a class="btn-outline" href="{{ page.secondary_button_url }}">
+                                    {% else %}
+                                    <a class="btn-outline" href="/services/">
+                                        {% endif %}
+                                        {% if page.secondary_button_text %}
+                                        {{ page.secondary_button_text }}
+                                        {% else %}
+                                        View Services
+                                        {% endif %}
+                                    </a>
+                                    {% if rss_items %}
+                                    <div class="home-rss-card">
+                                        <p class="eyebrow">{{ page.rss_heading }}</p>
+                                        <p class="rss-source">
+                                            Source: IRCC (Government of Canada)
+                                        </p>
+                                        <div class="rss-scroll-window">
+                                            <div class="rss-scroll-track">
+                                                {% for item in rss_items %}
+                                                <a href="{{ item.link }}" target="_blank" rel="noopener">
+                                                    {{ item.title }}
+                                                </a>
+                                                {% endfor %}
+
+                                                {% for item in rss_items %}
+                                                <a href="{{ item.link }}" target="_blank" rel="noopener"
+                                                    aria-hidden="true" tabindex="-1">
+                                                    {{ item.title }}
+                                                </a>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>
-    </div>
-</section>
-
-<section class="home-section">
-    <div class="container">
-        <p class="eyebrow">Explore</p>
-        <h2>How we can help</h2>
-
-        <div class="home-card-grid">
-            <a class="home-card" href="/services/">
-                <h3>Services</h3>
-                <p>Explore the professional services available for your needs.</p>
-            </a>
-
-            <a class="home-card" href="/blog/">
-                <h3>Blog</h3>
-                <p>Read updates, guidance, and helpful information.</p>
-            </a>
-
-            <a class="home-card" href="/inquiry/">
-                <h3>Inquiry</h3>
-                <p>Contact us directly and we’ll respond as soon as possible.</p>
-            </a>
-        </div>
-    </div>
 </section>
 
 {% endblock %}
