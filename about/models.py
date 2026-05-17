@@ -7,6 +7,11 @@ from wagtail.images import get_image_model_string
 
 class AboutPage(Page):
     intro = RichTextField(blank=True)
+    eyebrow = models.CharField(
+        max_length=100,
+        blank=True,
+        default="About",
+    )
     body = RichTextField(blank=True)
     hero_image = models.ForeignKey(
         get_image_model_string(),
@@ -57,8 +62,24 @@ class AboutPage(Page):
         related_name="+",
     )
 
+    about_video_poster = models.ForeignKey(
+        get_image_model_string(),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+        help_text="Poster image shown before the About page video plays.",
+    )
+
+    about_video_file = models.FileField(
+        upload_to="about/videos/",
+        blank=True,
+        help_text="Upload an MP4 video file for the About page.",
+    )
+
     content_panels = Page.content_panels + [
         FieldPanel("intro"),
+        FieldPanel("eyebrow"),
         FieldPanel("body"),
         FieldPanel("hero_image"),
         FieldPanel("hero_image_alt"),
@@ -67,6 +88,8 @@ class AboutPage(Page):
         FieldPanel("certificate_3"),
         FieldPanel("certificate_4"),
         FieldPanel("certificate_5"),
+        FieldPanel("about_video_poster"),
+        FieldPanel("about_video_file"),
     ]
 
     parent_page_types = ["home.HomePage"]

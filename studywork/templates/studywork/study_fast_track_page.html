@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags studywork_tags %}
+
+{% block content %}
+
+<section class="fast-track-page">
+    <div class="fast-track-header">
+        {% if page.eyebrow %}
+        <p class="section-eyebrow">{{ page.eyebrow }}</p>
+        {% endif %}
+
+        <h1>{{ page.title }}</h1>
+
+        {% if page.intro %}
+        <div class="fast-track-intro">
+            {{ page.intro|richtext }}
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="fast-track-card-grid">
+        {% for card in page.fast_track_cards.all %}
+        <article class="fast-track-card">
+            {% if card.icon %}
+            <div class="fast-track-card-icon">
+                {% image card.icon width-220 %}
+            </div>
+            {% endif %}
+
+            <h2>{{ card.title }}</h2>
+
+            {% if card.body_text %}
+            <div class="fast-track-card-body">
+                {{ card.body_text|program_body }}
+            </div>
+            {% endif %}
+        </article>
+        {% endfor %}
+    </div>
+
+    {% if page.bottom_heading %}
+    <div class="fast-track-bottom-heading">
+        <span>{{ page.bottom_heading }}</span>
+    </div>
+    {% endif %}
+</section>
+
+{% endblock %}

@@ -46,3 +46,78 @@ document.addEventListener("keydown", function (event) {
         }
     }
 });
+
+document.addEventListener("click", function (event) {
+    const aboutVideoTrigger = event.target.closest(".about-video-trigger");
+
+    if (aboutVideoTrigger) {
+        const modal = document.getElementById("about-video-modal");
+        const video = modal ? modal.querySelector(".about-video-player") : null;
+
+        if (modal) {
+            modal.classList.add("is-open");
+            modal.setAttribute("aria-hidden", "false");
+            document.body.classList.add("modal-open");
+
+            if (video) {
+                video.currentTime = 0;
+                video.play().catch(function () {
+                    // Some browsers may block autoplay until the user interacts with controls.
+                });
+            }
+        }
+
+        return;
+    }
+
+    const aboutVideoClose = event.target.closest(".about-video-close");
+
+    if (aboutVideoClose) {
+        const modal = aboutVideoClose.closest(".about-video-modal");
+        const video = modal ? modal.querySelector(".about-video-player") : null;
+
+        if (video) {
+            video.pause();
+        }
+
+        if (modal) {
+            modal.classList.remove("is-open");
+            modal.setAttribute("aria-hidden", "true");
+            document.body.classList.remove("modal-open");
+        }
+
+        return;
+    }
+
+    const aboutVideoModal = event.target.closest(".about-video-modal");
+
+    if (aboutVideoModal && event.target === aboutVideoModal) {
+        const video = aboutVideoModal.querySelector(".about-video-player");
+
+        if (video) {
+            video.pause();
+        }
+
+        aboutVideoModal.classList.remove("is-open");
+        aboutVideoModal.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("modal-open");
+    }
+});
+
+document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+        const modal = document.querySelector(".about-video-modal.is-open");
+
+        if (modal) {
+            const video = modal.querySelector(".about-video-player");
+
+            if (video) {
+                video.pause();
+            }
+
+            modal.classList.remove("is-open");
+            modal.setAttribute("aria-hidden", "true");
+            document.body.classList.remove("modal-open");
+        }
+    }
+});

@@ -8,7 +8,9 @@
   <section class="about-hero-grid">
 
     <div class="about-hero-text">
-      <p class="eyebrow">About</p>
+      {% if page.eyebrow %}
+      <p class="section-eyebrow">{{ page.eyebrow }}</p>
+      {% endif %}
       <h1>{{ page.title }}</h1>
 
       {% if page.intro %}
@@ -33,6 +35,32 @@
     </div>
     {% endif %}
   </section>
+
+  {% if page.about_video_file and page.about_video_poster %}
+  <section class="about-video-section">
+    <div class="about-video-container">
+      <button class="about-video-trigger" type="button" aria-label="Play About video">
+        {% image page.about_video_poster fill-1000x560 %}
+        <span class="about-video-play">
+          <span class="about-video-play-icon">▶</span>
+        </span>
+      </button>
+    </div>
+  </section>
+
+  <div class="about-video-modal" id="about-video-modal" aria-hidden="true">
+    <div class="about-video-modal-inner">
+      <button class="about-video-close" type="button" aria-label="Close video">
+        ×
+      </button>
+
+      <video class="about-video-player" controls>
+        <source src="{{ page.about_video_file.url }}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+  {% endif %}
 
   <section class="about-certificates-section">
     <div class="about-certificates-container">
