@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags studywork_tags %}
+
+{% block content %}
+
+<section class="whyus-page">
+    <div class="whyus-header">
+        {% if page.eyebrow %}
+        <p class="section-eyebrow">{{ page.eyebrow }}</p>
+        {% endif %}
+
+        <h1>{{ page.title }}</h1>
+
+        {% if page.intro %}
+        <div class="whyus-intro">
+            {{ page.intro|richtext }}
+        </div>
+        {% endif %}
+    </div>
+
+    {% if page.main_image %}
+    <div class="whyus-main-image">
+        {% image page.main_image fill-1200x520 alt=page.main_image_alt %}
+    </div>
+    {% endif %}
+
+    <div class="whyus-accordion">
+        {% for reason in page.get_ordered_reasons %}
+        <details class="whyus-accordion-item" {% if reason.open_by_default %}open{% endif %}>
+            <summary>
+                <span>{{ reason.subtitle }}</span>
+                <span class="whyus-accordion-icon">+</span>
+            </summary>
+
+            <div class="whyus-accordion-content">
+                {% if reason.details_text %}
+                <div class="whyus-details">
+                    {{ reason.details_text|program_body }}
+                </div>
+                {% endif %}
+
+                {% if reason.bullet_items %}
+                <ul class="whyus-bullets">
+                    {% for item in reason.bullet_items.splitlines %}
+                    {% if item %}
+                    <li>{{ item }}</li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+        </details>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock %}

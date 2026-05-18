@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     "inquiry",
     "wagtail_localize",
     "wagtail_localize.locales",
+    "whyus",
 ]
 
 MIDDLEWARE = [

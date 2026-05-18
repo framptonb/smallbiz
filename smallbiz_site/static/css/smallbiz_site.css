@@ -1730,3 +1730,144 @@ body.modal-open {
         border-radius: 18px;
     }
 }
+
+/* =========================================
+   WHY US PAGE
+========================================= */
+
+.whyus-page {
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 70px 24px 90px;
+}
+
+.whyus-header {
+    max-width: 850px;
+    margin: 0 auto 42px;
+    text-align: center;
+}
+
+.whyus-header h1 {
+    margin: 0 0 20px;
+    color: #0d2a4a;
+    font-size: clamp(2.8rem, 5vw, 5rem);
+    line-height: 0.98;
+    font-weight: 800;
+}
+
+.whyus-intro {
+    color: #3f4a55;
+    font-size: 1.08rem;
+    line-height: 1.8;
+}
+
+.whyus-main-image {
+    width: 50%;
+    max-width: 575px;
+    margin: 0 auto 44px;
+    border-radius: 26px;
+    overflow: hidden;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.12);
+}
+
+.whyus-main-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.whyus-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.whyus-accordion-item {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 22px;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.07);
+    overflow: hidden;
+}
+
+.whyus-accordion-item summary {
+    list-style: none;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+
+    padding: 14px 22px;
+    color: #0d2a4a;
+    font-size: clamp(1rem, 1.45vw, 1.2rem);
+    font-weight: 750;
+}
+
+.whyus-accordion-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.whyus-accordion-icon {
+    flex: 0 0 auto;
+    width: 26px;
+    height: 26px;
+
+    border-radius: 999px;
+    background: #d3a243;
+    color: #111;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.05rem;
+    line-height: 1;
+    font-weight: 800;
+}
+
+.whyus-accordion-item[open] .whyus-accordion-icon {
+    transform: rotate(45deg);
+}
+
+.whyus-accordion-content {
+    padding: 0 22px 22px;
+    color: #3d4852;
+    font-size: 0.98rem;
+    line-height: 1.7;
+}
+
+.whyus-details p {
+    margin: 0 0 1.1em;
+}
+
+.whyus-bullets {
+    margin: 18px 0 0;
+    padding-left: 1.4rem;
+}
+
+.whyus-bullets li {
+    margin-bottom: 0.65em;
+}
+
+@media (max-width: 768px) {
+    .whyus-page {
+        padding: 50px 18px 70px;
+    }
+
+    .whyus-main-image {
+        width: 100%;
+        max-width: none;
+        border-radius: 18px;
+    }
+
+    .whyus-accordion-item summary {
+        padding: 14px 16px;
+        font-size: 1rem;
+    }
+
+    .whyus-accordion-content {
+        padding: 0 16px 20px;
+    }
+}
